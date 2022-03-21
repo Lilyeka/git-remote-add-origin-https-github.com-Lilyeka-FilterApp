@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SearchModel {
+final class SearchModel {
     var url: URL
     var filterString: String = ""
     

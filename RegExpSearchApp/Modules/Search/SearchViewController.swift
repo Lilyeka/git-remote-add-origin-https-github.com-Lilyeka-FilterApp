@@ -13,7 +13,7 @@ protocol SearchViewOutputProtocol {
     func searchButtonTapped()
 }
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     // MARK: Views
     let urlLabel: UILabel = {
         let label = UILabel()
@@ -68,7 +68,10 @@ class SearchViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         let interactor = SearchInteractor()
         let presenter = SearchPresenter(view: self, interactor: interactor)
+        presenter.interactor = interactor
         interactor.presenter = presenter
+        let router = SearchRouter(viewController: self)
+        presenter.router = router
         self.presenter = presenter
     }
     
@@ -79,7 +82,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        self.presenter.viewDidLoad()
+       // self.presenter.viewDidLoad()
     }
     
     // MARK: Actions
@@ -108,7 +111,7 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController: SearchViewInputProtocol {
-    func updateView(data: String) {
-        print("обновляется вью с данными " + data)
+    func updateView(data: [String]) {
+        // здесь можно остановить крутилку просто
     }
 }

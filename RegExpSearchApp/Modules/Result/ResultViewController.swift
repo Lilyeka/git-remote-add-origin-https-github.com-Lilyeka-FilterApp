@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResultViewController: UIViewController, UITableViewDataSource {
+final class ResultViewController: UIViewController, UITableViewDataSource {
     //MARK: -Views
     var tableView: UITableView = {
         var table = UITableView()
@@ -15,12 +15,7 @@ class ResultViewController: UIViewController, UITableViewDataSource {
         return table
     }()
     //MARK: -Variables
-    var dataSourceArray = [
-        "asb",
-        "cmdlcnlsnkcklnclkdnclkdnvdlakvndlkndalfkvnadlfknvvdvdvcdcsdcsdcsddscssdsdcd",
-        "sdnslkcnsdlcnsdkcnsadkncsaldkncaklsdncklasdnclkasdnclkansdlknadslcknakdslcnakalkdncldkncladknclkadnclkandsclkndslknaldkcnlakdnclakakndanlcknaldkladknclkadnclkandckl",
-        "csdcscasdcasdcasdcasdcsdcscsccdscsdcadscc"
-    ]
+    var dataSourceArray:[String] = []
     
     //MARK: -Life cycle
     override func viewDidLoad() {
@@ -53,7 +48,7 @@ extension ResultViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = dataSourceArray[indexPath.row]
-        return cell 
+        return cell
     }
 }
 
