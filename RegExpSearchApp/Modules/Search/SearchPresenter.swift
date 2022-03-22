@@ -9,10 +9,12 @@ import Foundation
 
 protocol SearchViewInputProtocol: AnyObject {
     func updateView(data: [String])
+    func updateView(data: SearchModel)
 }
 
 protocol SearchInteractorInputProtocol: AnyObject {
-    func getFilteredData()
+    func getSearchData()
+    func getFilteredData(model: SearchModel)
 }
 
 protocol SearchRouterProtocol: AnyObject {
@@ -29,17 +31,20 @@ final class SearchPresenter: SearchViewOutputProtocol, SearchInteractorOutputPro
         self.interactor = interactor
     }
     
+    //MARK: SearchViewOutputProtocol
     func viewDidLoad() {
-        
+        self.interactor.getSearchData()
     }
     
-    //MARK: SearchViewOutputProtocol
-    func searchButtonTapped() {
-        self.interactor.getFilteredData()
-        print("начинаем поиск!")
+    func searchButtonTapped(model: SearchModel) {
+        self.interactor.getFilteredData(model: model)
     }
     
     //MARK: SearchInteractorOutputProtocol
+    func searchDataFetched(model: SearchModel) {
+        self.view?.updateView(data: model)
+    }
+    
     func dataFetched(data: [String]) {
         self.view?.updateView(data: data)
         self.router.showResultScene(result: data)

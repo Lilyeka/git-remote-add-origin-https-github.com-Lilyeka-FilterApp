@@ -10,7 +10,7 @@ import UIKit
 
 protocol SearchViewOutputProtocol {
     func viewDidLoad()
-    func searchButtonTapped()
+    func searchButtonTapped(model: SearchModel)
 }
 
 final class SearchViewController: UIViewController {
@@ -58,7 +58,12 @@ final class SearchViewController: UIViewController {
         return stackView
     }()
     // MARK: Variables
-    
+    var searchModel: SearchModel! {
+        didSet {
+            self.urlTextField.text = searchModel.url.absoluteString
+            self.filterTextField.text = searchModel.filterString
+        }
+    }
     var presenter: SearchViewOutputProtocol!
     
     // MARK: Life cycle
@@ -66,7 +71,9 @@ final class SearchViewController: UIViewController {
     //MARK: -Init
     init() {
         super.init(nibName: nil, bundle: nil)
-        let interactor = SearchInteractor()
+        let readingService = ReaderService()
+        let pareserService = ParserService()
+        let interactor = SearchInteractor(readerService: readingService, parserService: pareserService)
         let presenter = SearchPresenter(view: self, interactor: interactor)
         presenter.interactor = interactor
         interactor.presenter = presenter
@@ -82,12 +89,12 @@ final class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-       // self.presenter.viewDidLoad()
+        self.presenter.viewDidLoad()
     }
     
     // MARK: Actions
     @objc func searchAction() {
-        self.presenter.searchButtonTapped()
+        self.presenter.searchButtonTapped(model: searchModel)
     }
     
     // MARK: Private methods
@@ -111,6 +118,10 @@ final class SearchViewController: UIViewController {
 }
 
 extension SearchViewController: SearchViewInputProtocol {
+    func updateView(data: SearchModel) {
+        self.searchModel = data
+    }
+    
     func updateView(data: [String]) {
         // здесь можно остановить крутилку просто
     }

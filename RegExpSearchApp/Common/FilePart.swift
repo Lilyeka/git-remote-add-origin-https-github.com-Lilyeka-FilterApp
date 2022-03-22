@@ -12,7 +12,7 @@ protocol FilePartProtocol {
     var fileSize: Double { get }
     var partSize: Double { get set }
    
-    func getNextPart() -> String
+    func getNextPart() -> String?
 }
  
 class FilePart: FilePartProtocol {
@@ -38,16 +38,18 @@ class FilePart: FilePartProtocol {
         self.partSize = partSize
     }
     
-    func getNextPart() -> String {
+    func getNextPart() -> String? {
         let dataArray = [
-            "asb",
-            "cmdlcnlsnkcklnclkdnclkdnvdlakvndlkndalfkvnadlfknvvdvdvcdcsdcsdcsddscssdsdcd",
-            "sdnslkcnsdlcnsdkcnsadkncsaldkncaklsdncklasdnclkasdnclkansdlknadslcknakdslcnakalkdncldkncladknclkadnclkandsclkndslknaldkcnlakdnclakakndanlcknaldkladknclkadnclkandckl",
-            "csdcscasdcasdcasdcasdcsdcscsccdscsdcadscc"
+            "abs",
+            "cmdlcnabs",
+            "sdnslkcnsdlcnsdkcnsadkncsaldkncaklsdnckla",
+            "csdcscasdcasdcasdcasdcsdcscsccdscsdcabsdscc"
         ]
         let currentPartIndexCopy = self.currentPartIndex
-        if self.currentPartIndex < self.numberOfParts {
+        if self.currentPartIndex <= self.numberOfParts {
             self.currentPartIndex += 1
+        } else {
+            return nil
         }
         return dataArray[currentPartIndexCopy - 1]
     }

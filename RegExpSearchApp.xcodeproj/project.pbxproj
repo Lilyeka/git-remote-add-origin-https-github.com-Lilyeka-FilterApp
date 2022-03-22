@@ -19,6 +19,7 @@
 		6105C02727E9177200879FB1 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105C02627E9177200879FB1 /* SearchRouter.swift */; };
 		6105C02A27E9B77D00879FB1 /* ReaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105C02927E9B77D00879FB1 /* ReaderService.swift */; };
 		6105C02C27E9CC5900879FB1 /* FilePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105C02B27E9CC5900879FB1 /* FilePart.swift */; };
+		6105C02E27E9D82600879FB1 /* ParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105C02D27E9D82600879FB1 /* ParserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		6105C02627E9177200879FB1 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		6105C02927E9B77D00879FB1 /* ReaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderService.swift; sourceTree = "<group>"; };
 		6105C02B27E9CC5900879FB1 /* FilePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePart.swift; sourceTree = "<group>"; };
+		6105C02D27E9D82600879FB1 /* ParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				6105C02927E9B77D00879FB1 /* ReaderService.swift */,
+				6105C02D27E9D82600879FB1 /* ParserService.swift */,
 				6105C02B27E9CC5900879FB1 /* FilePart.swift */,
 			);
 			path = Common;
@@ -198,6 +201,7 @@
 			files = (
 				6105C02327E8CAEC00879FB1 /* SearchInteractor.swift in Sources */,
 				61000F7027E8894400C0DBF6 /* ResultViewController.swift in Sources */,
+				6105C02E27E9D82600879FB1 /* ParserService.swift in Sources */,
 				6105C02A27E9B77D00879FB1 /* ReaderService.swift in Sources */,
 				61000F6C27E8894400C0DBF6 /* AppDelegate.swift in Sources */,
 				6105C02C27E9CC5900879FB1 /* FilePart.swift in Sources */,
