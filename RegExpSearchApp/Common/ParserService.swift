@@ -11,7 +11,7 @@ protocol ParserServiceProtocol {
     func parse(object: FilePartProtocol, filter: String) -> [String]
 }
 
-class ParserService: ParserServiceProtocol {
+final class ParserService: ParserServiceProtocol {
     func parse(object: FilePartProtocol, filter: String) -> [String] {
         var resultArray:[String] = []
         var nextString = object.getNextPart()

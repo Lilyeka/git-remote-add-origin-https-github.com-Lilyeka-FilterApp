@@ -9,10 +9,12 @@ import Foundation
 
 final class SearchModel {
     var url: URL
-    var filterString: String = ""
+    var filterString: String
+    var resultFileName: String
     
-    init(url: URL, filterString: String) {
+    init(url: URL, filterString: String, resultFileName: String) {
         self.url = url
         self.filterString = filterString
+        self.resultFileName = resultFileName
     }
 }

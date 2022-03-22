@@ -25,10 +25,13 @@ final class SearchPresenter: SearchViewOutputProtocol, SearchInteractorOutputPro
     weak var view: SearchViewInputProtocol?
     var interactor: SearchInteractorInputProtocol
     var router: SearchRouterProtocol!
+    var logService: LoggingServiceProtocol!
+    var model: SearchModel?
     
-    init(view: SearchViewInputProtocol, interactor: SearchInteractorInputProtocol ) {
+    init(view: SearchViewInputProtocol, interactor: SearchInteractorInputProtocol, logService: LoggingServiceProtocol) {
         self.view = view
         self.interactor = interactor
+        self.logService = logService
     }
     
     //MARK: SearchViewOutputProtocol
@@ -43,10 +46,18 @@ final class SearchPresenter: SearchViewOutputProtocol, SearchInteractorOutputPro
     //MARK: SearchInteractorOutputProtocol
     func searchDataFetched(model: SearchModel) {
         self.view?.updateView(data: model)
+        self.model = model
     }
     
     func dataFetched(data: [String]) {
         self.view?.updateView(data: data)
         self.router.showResultScene(result: data)
+        guard let model = self.model, !model.resultFileName.isEmpty else { return }
+        do {
+            try logService.write(data, toDocumentNamed: model.resultFileName)
+            print("Инфо записана в файл!)")
+        } catch {
+            print(error)
+        }
     }
 }

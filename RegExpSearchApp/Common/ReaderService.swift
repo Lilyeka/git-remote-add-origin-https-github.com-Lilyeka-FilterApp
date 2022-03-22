@@ -11,7 +11,7 @@ protocol ReaderServiceProtocol {
     func readFile(url: URL) -> FilePartProtocol
 }
 
-class ReaderService: ReaderServiceProtocol {
+final class ReaderService: ReaderServiceProtocol {
     func readFile(url: URL) -> FilePartProtocol {
         // Чтение файла, определение его размера, а также размера его частей
         let fileSize: Double = 200.0

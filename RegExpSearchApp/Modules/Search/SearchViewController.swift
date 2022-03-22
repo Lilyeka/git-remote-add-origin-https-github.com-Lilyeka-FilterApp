@@ -71,10 +71,11 @@ final class SearchViewController: UIViewController {
     //MARK: -Init
     init() {
         super.init(nibName: nil, bundle: nil)
-        let readingService = ReaderService()
-        let pareserService = ParserService()
+        let readingService: ReaderServiceProtocol = ReaderService()
+        let pareserService: ParserServiceProtocol = ParserService()
+        let logService: LoggingServiceProtocol = LoggingService()
         let interactor = SearchInteractor(readerService: readingService, parserService: pareserService)
-        let presenter = SearchPresenter(view: self, interactor: interactor)
+        let presenter = SearchPresenter(view: self, interactor: interactor, logService: logService)
         presenter.interactor = interactor
         interactor.presenter = presenter
         let router = SearchRouter(viewController: self)

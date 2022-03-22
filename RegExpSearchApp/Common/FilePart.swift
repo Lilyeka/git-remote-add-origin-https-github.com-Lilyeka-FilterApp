@@ -15,7 +15,7 @@ protocol FilePartProtocol {
     func getNextPart() -> String?
 }
  
-class FilePart: FilePartProtocol {
+final class FilePart: FilePartProtocol {
     var fileUrl: URL
     var fileSize: Double
     var partSize: Double

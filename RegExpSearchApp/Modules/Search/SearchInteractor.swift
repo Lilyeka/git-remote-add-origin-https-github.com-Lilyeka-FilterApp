@@ -14,17 +14,17 @@ protocol SearchInteractorOutputProtocol: AnyObject {
 
 final class SearchInteractor: SearchInteractorInputProtocol {
     weak var presenter: SearchInteractorOutputProtocol?
-    var readerService: ReaderService!
-    var parserService: ParserService!
+    var readerService: ReaderServiceProtocol!
+    var parserService: ParserServiceProtocol!
     
-    init(readerService: ReaderService, parserService: ParserService) {
+    init(readerService: ReaderServiceProtocol, parserService: ParserServiceProtocol) {
         self.readerService = ReaderService()
         self.parserService = ParserService()
     }
     
     func getSearchData() {
         let fileURL = URL(fileURLWithPath: "https://google.com")
-        var model = SearchModel(url: fileURL, filterString: "abs")
+        let model = SearchModel(url: fileURL, filterString: "abs", resultFileName: "results.log")
         self.presenter?.searchDataFetched(model: model)
     }
     
